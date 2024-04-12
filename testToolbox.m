@@ -1,14 +1,17 @@
-suite = testsuite(fullfile('test/'));
-runner = testrunner("textoutput");
+import matlab.unittest.TestRunner
+import matlab.unittest.Verbosity
 import matlab.unittest.plugins.CodeCoveragePlugin
-import matlab.unittest.plugins.codecoverage.CoverageReport
 import matlab.unittest.plugins.codecoverage.CoberturaFormat
 
-sourceFile = fullfile('install','+opentelemetry');
+suite = testsuite(fullfile('test/'));
+runner = TestRunner.withTextOutput("OutputDetail",Verbosity.Detailed);
+
+sourceFile = fullfile('install');
+
 reportFile = fullfile("cobertura.xml");
 reportFormat = CoberturaFormat(reportFile);
 p = CodeCoveragePlugin.forFolder(sourceFile,'IncludingSubfolders',true,'Producing',reportFormat);
 runner.addPlugin(p);
-result = runner.run(suite);
-
-result.assertSuccess()
+results = runner.run(suite);
+nfailed = nnz([results.Failed]);
+assert(nfailed == 0,[num2str(nfailed) ' test(s) failed.'])
