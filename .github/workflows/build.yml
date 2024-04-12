@@ -116,11 +116,11 @@ jobs:
                  # Add the installation directory to the MATLAB Search Path by
                  # setting the MATLABPATH environment variable.
                  MATLABPATH: ${{ env.OPENTELEMETRY_MATLAB_INSTALL }}
-              uses: matlab-actions/run-tests@v2
+            - uses: matlab-actions/run-tests@v2
               with:
                  source-folder: install/+opentelemetry
                  code-coverage-cobertura: cobertura.xml
-              uses: codecov/codecov-action@v4
+            - uses: codecov/codecov-action@v4
               with:
                  token: ${{ secrets.CODECOV_TOKEN }}
                  slug: mathworks/OpenTelemetry-Matlab
