@@ -121,6 +121,7 @@ jobs:
                  source-folder: install/+opentelemetry
                  code-coverage-cobertura: cobertura.xml
               uses: codecov/codecov-action@v4
+              with:
                  token: ${{ secrets.CODECOV_TOKEN }}
                  slug: mathworks/OpenTelemetry-Matlab
                  file: cobertura.xml
