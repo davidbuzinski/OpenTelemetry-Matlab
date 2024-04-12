@@ -106,7 +106,7 @@ jobs:
                   cd opentelemetry-matlab
                   cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DWITH_EXAMPLES=ON -DCMAKE_INSTALL_PREFIX=${{ env.OPENTELEMETRY_MATLAB_INSTALL }}
                   cmake --build build --config Release --target install
-            - name: Codecov
+            - name: Get Codecov
               env:
                  # The version of libstdc++ that is bundled with MATLAB is used when building MEX files.
                  # This version of libstdc++ is incompatible with the system version of libstdc++.
@@ -116,11 +116,12 @@ jobs:
                  # Add the installation directory to the MATLAB Search Path by
                  # setting the MATLABPATH environment variable.
                  MATLABPATH: ${{ env.OPENTELEMETRY_MATLAB_INSTALL }}
-            - uses: matlab-actions/run-tests@v2
+              uses: matlab-actions/run-tests@v2
               with:
                  source-folder: install/+opentelemetry
                  code-coverage-cobertura: cobertura.xml
-            - uses: codecov/codecov-action@v4
+            - name: Upload Codecov
+              uses: codecov/codecov-action@v4
               with:
                  token: ${{ secrets.CODECOV_TOKEN }}
                  slug: mathworks/OpenTelemetry-Matlab
