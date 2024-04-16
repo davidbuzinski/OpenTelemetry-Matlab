@@ -118,7 +118,7 @@ jobs:
                  MATLABPATH: ${{ env.OPENTELEMETRY_MATLAB_INSTALL }}
               uses: matlab-actions/run-tests@v2
               with:
-                 source-folder: install
+                 source-folder: ${{ env.OPENTELEMETRY_MATLAB_INSTALL }}
                  code-coverage-cobertura: cobertura.xml
             - name: Upload Codecov
               uses: codecov/codecov-action@v4
