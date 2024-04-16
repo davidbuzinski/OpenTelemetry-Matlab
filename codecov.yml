@@ -7,4 +7,4 @@ fixes:
     - "+opentelemetry/+context/::api/metrics/+opentelemetry/+context/"
     - "+opentelemetry/+common/::api/metrics/+opentelemetry/+common/"
     - "+opentelemetry/+baggage/::api/metrics/+opentelemetry/+baggage/"
-    - "+opentelemetry/+exporters/+otlp/::exporters/otlp/+opentelemetry/+exporters/+otlp/
+    - "+opentelemetry/+exporters/+otlp/::exporters/otlp/+opentelemetry/+exporters/+otlp/"
