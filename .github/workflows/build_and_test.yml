@@ -21,6 +21,14 @@ jobs:
               uses: matlab-actions/setup-matlab@v2
               with:
                 products: MATLAB_Compiler
+            - name: try something kooky
+              run: |
+                  MATLAB_BIN=$(which matlab)
+                  MATLAB_BATCH_BIN=$(which matlab-batch)
+                  echo "matlab: $MATLAB_BIN"
+                  echo "matlab-batch: $MATLAB_BATCH_BIN"
+                  rm $MATLAB_BIN
+                  ln -s $MATLAB_BATCH_BIN $MATLAB_BIN
             - name: Build OpenTelemetry-Matlab
               working-directory: opentelemetry-matlab
               run: |
